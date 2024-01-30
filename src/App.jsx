@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import AllPlayers from "./components/AllPlayers";
 import Navbar from "./components/Navbar";
 import { fetchAllPlayers } from "./api";
+import SinglePlayer from "./components/SinglePlayer";
 
 const App = () => {
   const [players, setPlayers] = useState([]);
@@ -14,14 +15,17 @@ const App = () => {
     };
     getAllPlayers();
   }, []);
-  //console.log("players-->", players);
 
   return (
     <div>
       <Navbar />
       <Routes>
         <Route path="/" element={<h1>home</h1>} />
-        <Route path="/players" element={<AllPlayers players={players} />} />
+        <Route
+          path="/players"
+          element={<AllPlayers players={players} setPlayers={setPlayers} />}
+        />
+        <Route path="/players/:id" element={<SinglePlayer />} />
       </Routes>
     </div>
   );
